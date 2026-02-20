@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outfit Chooser - Main</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="main-page">
+
+<div class="snow"></div>
+
+
+<div id="toggle-sidebar">☰</div>
+
+<div class="icon-bar" id="sidebar">
+    <div class="icon-item">🤖</div>
+    <div class="icon-item">💬</div>
+    <div class="icon-item">📄</div>
+    <div class="icon-item">⭐</div>
+    <div class="icon-item">📷</div>
+    <div class="icon-item">📨</div>
+    <div class="icon-item">❓</div>
+    <div class="icon-item">💼</div>
+</div>
+
+
+<div class="outfit-menu">
+    <div class="menu-title">Outfit Menu</div>
+
+    <div class="menu-links">
+        <a href="page1.html">Outerwear</a>
+        <a href="page2.html">Pants</a>
+        <a href="page3.html">Shoes</a>
+    </div>
+</div>
+
+
+<div class="center-welcome">
+    <h1>Welcome to the Outfit Chooser</h1>
+    <p>Select a category from the menu to begin.</p>
+</div>
+
+
+<script>
+    const snowContainer = document.querySelector(".snow");
+
+    for (let i = 0; i < 80; i++) {
+        const snowflake = document.createElement("span");
+        const size = Math.random() * 5 + 2; 
+        const left = Math.random() * 100;
+        const duration = Math.random() * 5 + 5;
+
+        snowflake.style.width = size + "px";
+        snowflake.style.height = size + "px";
+        snowflake.style.left = left + "vw";
+        snowflake.style.animationDuration = duration + "s";
+
+        snowContainer.appendChild(snowflake);
+    }
+</script>
+
+<script>
+    const toggleBtn = document.getElementById("toggle-sidebar");
+    const sidebar = document.getElementById("sidebar");
+
+    toggleBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+    });
+</script>
+
+<script>
+    const selectedList = document.getElementById("selected-list");
+
+    document.querySelectorAll(".grid a").forEach(card => {
+        card.addEventListener("click", function(event) {
+            event.preventDefault();
+
+            const img = this.querySelector("img");
+            const itemName = img.alt;
+            const itemSrc = img.src;
+
+
+            const existing = [...selectedList.children].find(li => li.dataset.name === itemName);
+
+            if (existing) {
+                existing.remove();
+            } else {
+                const li = document.createElement("li");
+                li.dataset.name = itemName;
+
+                const thumb = document.createElement("img");
+                thumb.src = itemSrc;
+                thumb.classList.add("selected-thumb");
+
+                const label = document.createElement("span");
+                label.textContent = itemName;
+
+                li.appendChild(thumb);
+                li.appendChild(label);
+
+                li.addEventListener("click", () => li.remove());
+
+                selectedList.appendChild(li);
+            }
+        });
+    });
+</script>
+
+<script>
+
+    localStorage.removeItem("selectedItems");
+</script>
+
+</body>
+</html>

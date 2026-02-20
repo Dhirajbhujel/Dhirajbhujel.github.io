@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="Outer-Wear-page">
+
+<div class="selection-box-left">
+    <h2>Selected Items</h2>
+    <ul id="selected-list"></ul>
+</div>
+
+<div class="total-price-box">Total: $0</div>
+
+
+<div class="purchase-box">Purchase</div>
+
+
+
+<div class="snow"></div>
+
+<div class="outfit-menu">
+    <div class="menu-title">Outfit Menu</div>
+
+    <div class="menu-links">
+        <a href="index.html">Outerwear</a>
+        <a href="page2.html">Pants</a>
+        <a href="page3.html">Shoes</a>
+        <a href="main.html">Restart</a>
+    </div>
+</div>
+
+
+<a href="main.html" class="back-main">Restart</a>
+<a href="page1.html" class="back-button">Go to Outerwear</a>
+
+<main>
+
+<h1>Shoes</h1>
+
+<input type="text" id="search" placeholder="Search color...">
+
+<select id="category" class="dropdown">
+    <option value="">Filter by type...</option>
+    <option value="shoes">Shoes</option>
+    <option value="slides">Slides</option>
+</select>
+
+<p id="no-results" style="display:none; text-align:center; font-size:3rem; color:white; margin-top:12px;">
+    Color not found
+</p>
+
+<div class="grid">
+
+    <a href="https://stockx.com/search?s=Jordan+Retros" target="_blank" class="card14" data-color="Blue" data-type="shoes" data-price="249.99">
+    <div class="image-container">
+        <img src="https://sneakersjoint.com/wp-content/uploads/2022/11/air-jordan-4-retro-midnight-navy-sneakers-1.webp" alt="Jordan 4 Retro Mitternacht Marine">
+    </div>
+</a>
+
+<a href="https://stockx.com/search?s=Jordan+Retros" target="_blank" class="card15" data-color="green" data-type="shoes" data-price="189.99">
+    <div class="image-container">
+        <img src="https://images.stockx.com/images/Air-Jordan-4-Retro-SB-Pine-Green-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1678346835" alt="Jordan 4 Retro SB pine green">
+    </div>
+</a>
+
+<a href="https://stockx.com/search?s=Jordan+Retros" target="_blank" class="card16" data-color="White" data-type="shoes" data-price="299.99">
+    <div class="image-container">
+        <img src="https://images.stockx.com/360/Air-Jordan-4-Retro-White-Cement-2025/Images/Air-Jordan-4-Retro-White-Cement-2025/Lv2/img01.jpg?w=576&q=41&dpr=3&updated_at=1743600069&h=384" alt="Jordan 4 Retro Cemento 2025">
+    </div>
+</a>
+
+<a href="https://stockx.com/search?s=yeezy+slides" target="_blank" class="card17" data-color="Beige" data-type="slides" data-price="129.99">
+    <div class="image-container">
+        <img src="https://images.stockx.com/images/Yeezy-Slide-Bone-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1608522495" alt="Adidas yeezy slide bone meal">
+    </div>
+</a>
+
+<a href="https://stockx.com/search?s=yeezy+slides" target="_blank" class="card18" data-color="black" data-type="slides" data-price="159.99">
+    <div class="image-container">
+        <img src="https://i.ebayimg.com/images/g/NuYAAOSwkyJi4t7t/s-l1200.webp" alt="Adidas Yeezy slides Black">
+    </div>
+</a>
+
+
+</div>
+
+</main>
+
+<script>
+    const search = document.getElementById("search");
+    const category = document.getElementById("category");
+    const cards = document.querySelectorAll(".grid a");
+    const noResults = document.getElementById("no-results");
+
+    function filterItems() {
+        const searchValue = search.value.toLowerCase().trim();
+        const categoryValue = category.value;
+        let matches = 0;
+
+        cards.forEach(card => {
+            const color = card.getAttribute("data-color").toLowerCase();
+            const type = card.getAttribute("data-type");
+
+            const colorMatch = searchValue.length < 3 || color.includes(searchValue);
+            const typeMatch = categoryValue === "" || type === categoryValue;
+
+            if (colorMatch && typeMatch) {
+                card.style.display = "block";
+                matches++;
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        noResults.style.display = matches === 0 ? "block" : "none";
+    }
+
+    search.addEventListener("input", filterItems);
+    category.addEventListener("change", filterItems);
+</script>
+
+<script>
+    const snowContainer = document.querySelector(".snow");
+
+    for (let i = 0; i < 80; i++) {
+        const snowflake = document.createElement("span");
+        const size = Math.random() * 5 + 2; 
+        const left = Math.random() * 100;
+        const duration = Math.random() * 5 + 5;
+
+        snowflake.style.width = size + "px";
+        snowflake.style.height = size + "px";
+        snowflake.style.left = left + "vw";
+        snowflake.style.animationDuration = duration + "s";
+
+        snowContainer.appendChild(snowflake);
+    }
+</script>
+<script>
+    const selectedList = document.getElementById("selected-list");
+    const totalPriceBox = document.querySelector(".total-price-box");
+
+    function updateTotal() {
+        const saved = JSON.parse(localStorage.getItem("selectedItems")) || [];
+        let total = 0;
+
+        saved.forEach(item => {
+            total += Number(item.price);
+        });
+
+        totalPriceBox.textContent = "Total: $" + total;
+    }
+
+    function saveSelections() {
+        const items = [...selectedList.children].map(li => ({
+            name: li.dataset.name,
+            src: li.querySelector("img").src,
+            price: li.dataset.price
+        }));
+
+        localStorage.setItem("selectedItems", JSON.stringify(items));
+        updateTotal();
+    }
+
+    function loadSelections() {
+        const saved = JSON.parse(localStorage.getItem("selectedItems")) || [];
+
+        saved.forEach(item => {
+            const li = document.createElement("li");
+            li.dataset.name = item.name;
+            li.dataset.price = item.price;
+
+            const label = document.createElement("span");
+            label.textContent = item.name + " - $" + item.price;
+
+            const thumb = document.createElement("img");
+            thumb.src = item.src;
+            thumb.classList.add("selected-thumb");
+
+            li.appendChild(label);
+            li.appendChild(thumb);
+
+            li.addEventListener("click", () => {
+                li.remove();
+                saveSelections();
+            });
+
+            selectedList.appendChild(li);
+        });
+
+        updateTotal();
+    }
+
+    document.querySelectorAll(".grid a").forEach(card => {
+        card.addEventListener("click", function(event) {
+            event.preventDefault();
+
+            const img = this.querySelector("img");
+            const itemName = img.alt || "Selected Item";
+            const itemSrc = img.src;
+            const itemPrice = this.dataset.price;
+
+            const existing = [...selectedList.children].find(li => li.dataset.name === itemName);
+
+            if (existing) {
+                existing.remove();
+                saveSelections();
+            } else {
+                const li = document.createElement("li");
+                li.dataset.name = itemName;
+                li.dataset.price = itemPrice;
+
+                const label = document.createElement("span");
+                label.textContent = itemName + " - $" + itemPrice;
+
+                const thumb = document.createElement("img");
+                thumb.src = itemSrc;
+                thumb.classList.add("selected-thumb");
+
+                li.appendChild(label);
+                li.appendChild(thumb);
+
+                li.addEventListener("click", () => {
+                    li.remove();
+                    saveSelections();
+                });
+
+                selectedList.appendChild(li);
+                saveSelections();
+            }
+        });
+    });
+
+    loadSelections();
+</script>
+
+
+</body>
+</html>
