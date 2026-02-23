@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pants</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<div class="selection-box-left">
+    <h2>Selected Items</h2>
+    <ul id="selected-list"></ul>
+</div>
+
+<div class="total-price-box">Total: $0</div>
+
+
+<body class="Outer-Wear-page">
+
+    
+<div class="snow"></div>
+<a href="main.html" class="back-main">Restart</a>
+<a href="page1.html" class="back-button">← Back to Outer Wear Closet</a>
+<a href="page3.html" class="underpants-link" style="top: 150px;">Shoes →</a>
+
+<main>
+
+<h1>Jeans & Sweatpants</h1>
+
+<input type="text" id="search" placeholder="Search color...">
+
+<select id="category" class="dropdown">
+    <option value="">Filter by type...</option>
+    <option value="jeans">Jeans</option>
+    <option value="sweatpants">Sweatpants</option>
+</select>
+
+<p id="no-results" style="display:none; text-align:center; font-size:3.5rem; color:white; margin-top:12px;">
+    Color not found
+</p>
+
+<div class="grid">
+
+    <a href="https://www.nike.com" target="_blank" class="card9" data-color="black" data-type="sweatpants" data-price="159.99">
+    <div class="image-container">
+        <img src="https://cdn.mall.adeptmind.ai/https://scene7.zumiez.com/is/image/zumiez/product_main_medium_2x/Nike-Sportswear-Black-Fleece-Sweatpants-_335145-front-US.jpg_large.webp" alt="Nike Black Sweatpants">
+    </div>
+</a>
+
+<a href="https://www.nike.com" target="_blank" class="card10" data-color="grey" data-type="sweatpants" data-price="119.99">
+    <div class="image-container">
+        <img src="https://tse2.mm.bing.net/th/id/OIP.YFPdtJnrOpYt7uXpCIT5ugHaJh?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Nike Grey Pants">
+    </div>
+</a>
+
+<a href="https://stockx.com/search?s=sp5der" target="_blank" class="card11" data-color="grey" data-type="sweatpants" data-price="149.99">
+    <div class="image-container">
+        <img src="https://th.bing.com/th/id/OPHS.TSN9TRzAiAwYEQ474C474?w=592&h=550&o=5&pid=21.1" alt="Grey Sp5der sweats">
+    </div>
+</a>
+
+<a href="https://www.levi.com" target="_blank" class="card12" data-color="black" data-type="jeans" data-price="119.99">
+    <div class="image-container">
+        <img src="https://tse4.mm.bing.net/th/id/OIP.9Xk6qWNBlVvpDDwJ54uHWQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Black Levi Jeans">
+    </div>
+</a>
+
+<a href="https://hollister.com" target="_blank" class="card13" data-color="blue" data-type="jeans" data-price="139.99">
+    <div class="image-container">
+        <img src="https://img.hollisterco.com/is/image/anf/KIC_331-6824-00646-280_prod1?policy=product-large" alt="Hollister Jeans">
+    </div>
+</a>
+
+
+</div>
+
+</main>
+
+<script>
+    const search = document.getElementById("search");
+    const category = document.getElementById("category");
+    const cards = document.querySelectorAll(".grid a");
+    const noResults = document.getElementById("no-results");
+
+    function filterItems() {
+        const searchValue = search.value.toLowerCase().trim();
+        const categoryValue = category.value;
+        let matches = 0;
+
+        cards.forEach(card => {
+            const color = card.getAttribute("data-color").toLowerCase();
+            const type = card.getAttribute("data-type");
+
+            const colorMatch = searchValue.length < 3 || color.includes(searchValue);
+            const typeMatch = categoryValue === "" || type === categoryValue;
+
+            if (colorMatch && typeMatch) {
+                card.style.display = "block";
+                matches++;
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        noResults.style.display = matches === 0 ? "block" : "none";
+    }
+
+    search.addEventListener("input", filterItems);
+    category.addEventListener("change", filterItems);
+</script>
+
+<script>
+    const snowContainer = document.querySelector(".snow");
+
+    for (let i = 0; i < 80; i++) {
+        const snowflake = document.createElement("span");
+        const size = Math.random() * 5 + 2; 
+        const left = Math.random() * 100;
+        const duration = Math.random() * 5 + 5;
+
+        snowflake.style.width = size + "px";
+        snowflake.style.height = size + "px";
+        snowflake.style.left = left + "vw";
+        snowflake.style.animationDuration = duration + "s";
+
+        snowContainer.appendChild(snowflake);
+    }
+</script>
+<script>
+    const selectedList = document.getElementById("selected-list");
+    const totalPriceBox = document.querySelector(".total-price-box");
+
+    function updateTotal() {
+        const saved = JSON.parse(localStorage.getItem("selectedItems")) || [];
+        let total = 0;
+
+        saved.forEach(item => {
+            total += Number(item.price);
+        });
+
+        totalPriceBox.textContent = "Total: $" + total;
+    }
+
+    function saveSelections() {
+        const items = [...selectedList.children].map(li => ({
+            name: li.dataset.name,
+            src: li.querySelector("img").src,
+            price: li.dataset.price
+        }));
+
+        localStorage.setItem("selectedItems", JSON.stringify(items));
+        updateTotal();
+    }
+
+    function loadSelections() {
+        const saved = JSON.parse(localStorage.getItem("selectedItems")) || [];
+
+        saved.forEach(item => {
+            const li = document.createElement("li");
+            li.dataset.name = item.name;
+            li.dataset.price = item.price;
+
+            const label = document.createElement("span");
+            label.textContent = item.name + " - $" + item.price;
+
+            const thumb = document.createElement("img");
+            thumb.src = item.src;
+            thumb.classList.add("selected-thumb");
+
+            li.appendChild(label);
+            li.appendChild(thumb);
+
+            li.addEventListener("click", () => {
+                li.remove();
+                saveSelections();
+            });
+
+            selectedList.appendChild(li);
+        });
+
+        updateTotal();
+    }
+
+    document.querySelectorAll(".grid a").forEach(card => {
+        card.addEventListener("click", function(event) {
+            event.preventDefault();
+
+            const img = this.querySelector("img");
+            const itemName = img.alt || "Selected Item";
+            const itemSrc = img.src;
+            const itemPrice = this.dataset.price;
+
+            const existing = [...selectedList.children].find(li => li.dataset.name === itemName);
+
+            if (existing) {
+                existing.remove();
+                saveSelections();
+            } else {
+                const li = document.createElement("li");
+                li.dataset.name = itemName;
+                li.dataset.price = itemPrice;
+
+                const label = document.createElement("span");
+                label.textContent = itemName + " - $" + itemPrice;
+
+                const thumb = document.createElement("img");
+                thumb.src = itemSrc;
+                thumb.classList.add("selected-thumb");
+
+                li.appendChild(label);
+                li.appendChild(thumb);
+
+                li.addEventListener("click", () => {
+                    li.remove();
+                    saveSelections();
+                });
+
+                selectedList.appendChild(li);
+                saveSelections();
+            }
+        });
+    });
+
+    loadSelections();
+</script>
+
+
+
+</body>
+</html>
