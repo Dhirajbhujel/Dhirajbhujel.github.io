@@ -687,3 +687,54 @@ h1 {
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
     z-index: 9999;
 }
+@media (max-width: 768px) {
+
+    .selection-box-left {
+        width: 85vw;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 20px;
+        height: auto;
+        max-height: 250px;
+        padding: 15px;
+    }
+
+    .purchase-box {
+        width: 85vw;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 290px;
+        padding: 15px;
+        font-size: 1.4rem;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 360px;
+    }
+
+    .grid a {
+        width: 100%;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    #search,
+    #category {
+        width: 90%;
+        margin-left: 5%;
+        font-size: 1.2rem;
+    }
+
+    .back-main,
+    .underpants-link {
+        font-size: 1.4rem;
+        padding: 10px 15px;
+    }
+}
