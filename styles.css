@@ -503,7 +503,7 @@ h1 {
 /* LEFT SIDE SELECTION BOX */
 .selection-box-left {
     position: fixed;
-    left: 20px;          /* LEFT SIDE */
+    left: 20px; 
     top: 120px;
     width: 280px;
     height: 420px;
@@ -549,7 +549,7 @@ h1 {
     object-fit: cover;
     margin-left: 10px;
 }
-/* LEFT SIDE SELECTION BOX */
+
 .selection-box-left {
     position: fixed;
     left: 20px;
@@ -687,32 +687,84 @@ h1 {
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
     z-index: 9999;
 }
+
 @media (max-width: 768px) {
 
-    .selection-box-left {
-        width: 85vw;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 20px;
-        height: auto;
-        max-height: 250px;
-        padding: 15px;
+    .back-main,
+    .underpants-link,
+    .shoes-link {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        display: inline-block;
+        width: auto;
     }
 
-    .purchase-box {
-        width: 85vw;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 290px;
-        padding: 15px;
+    .back-main,
+    .underpants-link,
+    .shoes-link {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+
+    .selection-box-left {
+        width: 90%;
+        margin: 10px auto;
+        padding: 10px;
+        max-height: 140px;
+        overflow-y: auto;
+        border-radius: 10px;
+        position: static;
+    }
+
+    .selection-box-left h2 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    #selected-list li {
+        font-size: 0.85rem;
+        padding: 5px;
+        margin-bottom: 5px;
+    }
+
+    .selected-thumb {
+        width: 32px;
+        height: 32px;
+    }
+
+    .back-main,
+    .underpants-link {
+        font-size: 1rem;
+        padding: 6px 10px;
+        margin: 5px;
+    }
+
+    h1 {
         font-size: 1.4rem;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    #search,
+    #category {
+        width: 90%;
+        margin: 6px auto;
+        font-size: 1rem;
+        padding: 6px;
+        display: block;
     }
 
     .grid {
+        width: 90%;
+        margin: 10px auto;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        margin-top: 360px;
+        gap: 10px;
     }
 
     .grid a {
@@ -722,19 +774,16 @@ h1 {
     .image-container img {
         width: 100%;
         height: auto;
-        border-radius: 10px;
+        border-radius: 8px;
     }
 
-    #search,
-    #category {
+    .purchase-box,
+    .total-price-box {
         width: 90%;
-        margin-left: 5%;
-        font-size: 1.2rem;
+        margin: 10px auto;
+        padding: 10px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        text-align: center;
+        position: static;
     }
-
-    .back-main,
-    .underpants-link {
-        font-size: 1.4rem;
-        padding: 10px 15px;
-    }
-}
