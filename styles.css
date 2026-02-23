@@ -707,7 +707,8 @@ h1 {
 
     .icon-bar {
         display: flex !important;
-        right: -100px !important;
+        position: fixed;
+        right: -120px !important;
         top: 50%;
         transform: translateY(-50%);
         transition: 0.4s ease;
@@ -717,6 +718,51 @@ h1 {
     .icon-bar.open {
         right: 20px !important;
     }
+
+    .selection-box-left {
+        position: relative !important;
+        width: 90% !important;
+        height: auto !important;
+        margin: 10px auto !important;
+        padding: 12px !important;
+        font-size: 0.9rem !important;
+    }
+
+    #selected-list li {
+        padding: 8px !important;
+        font-size: 0.9rem !important;
+    }
+
+    .selected-thumb {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .grid {
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .back-main,
+    .back-button,
+    .underpants-link {
+        position: static !important;
+        display: block !important;
+        width: 90% !important;
+        margin: 10px auto !important;
+        text-align: center !important;
+        font-size: 1.1rem !important;
+        padding: 12px !important;
+    }
+
+    .purchase-box,
+    .total-price-box {
+        position: static !important;
+        width: 90% !important;
+        margin: 10px auto !important;
+        text-align: center !important;
+    }
+
 
     body.main-page {
         display: block !important;
@@ -734,42 +780,6 @@ h1 {
         text-align: center !important;
     }
 
-    .center-welcome h1 {
-        font-size: 1.8rem !important;
-    }
-
-    .center-welcome p {
-        font-size: 1.1rem !important;
-    }
-
-    .outfit-menu {
-        position: static !important;
-        width: 90% !important;
-        margin: 20px auto !important;
-        height: auto !important;
-        padding: 15px !important;
-        border-radius: 12px !important;
-        text-align: center !important;
-        box-shadow: none !important;
-    }
-
-    .outfit-menu:hover {
-        height: auto !important;
-        box-shadow: none !important;
-    }
-
-    .menu-links {
-        opacity: 1 !important;
-        margin-top: 10px !important;
-    }
-
-    .menu-links a {
-        display: block !important;
-        padding: 10px !important;
-        margin: 5px 0 !important;
-        font-size: 1.1rem !important;
-    }
-
 
     .snow span {
         width: 5px !important;
@@ -777,17 +787,4 @@ h1 {
         opacity: 0.6 !important;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
