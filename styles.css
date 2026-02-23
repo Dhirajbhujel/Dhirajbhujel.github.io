@@ -688,149 +688,70 @@ h1 {
     z-index: 9999;
 }
 
-/* 📱 FULL MOBILE LAYOUT — CLEAN, RESPONSIVE, PROFESSIONAL */
 @media (max-width: 768px) {
 
-    /* Remove all fixed/absolute desktop positioning */
-    .selection-box-left,
-    .purchase-box,
-    .total-price-box,
-    .underpants-link,
-    .back-main,
-    .back-button {
-        position: static !important;
-        left: auto !important;
-        top: auto !important;
-        transform: none !important;
-        width: 90% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        z-index: 1 !important;
-    }
-
-    /* Hide desktop-only UI */
     .sidebar,
     .icon-bar,
-    #toggle-sidebar,
-    .outfit-menu {
+    #toggle-sidebar {
         display: none !important;
     }
 
-    /* Main content full width */
-    .main-content {
-        margin-left: 0 !important;
-        padding: 20px !important;
-        width: 100%;
-    }
-
-    /* Title */
-    h1 {
-        font-size: 2rem !important;
-        text-align: center;
-        margin-top: 15px;
-    }
-
-    /* Selection box */
-    .selection-box-left {
-        margin-top: 15px;
-        padding: 12px;
-        max-height: 180px;
-        overflow-y: auto;
-        border-radius: 12px;
-        background: rgba(255,255,255,0.85);
-    }
-
-    .selection-box-left h2 {
-        font-size: 1.2rem;
-        text-align: center;
-    }
-
-    #selected-list li {
-        font-size: 0.9rem;
-        padding: 8px;
-        margin-bottom: 8px;
-    }
-
-    .selected-thumb {
-        width: 40px;
-        height: 40px;
-    }
-
-    /* Navigation buttons (Restart, Underpants, Back) */
-    .back-main,
-    .underpants-link,
-    .back-button {
-        font-size: 1rem !important;
-        padding: 8px 14px !important;
-        margin-top: 10px !important;
-        margin-bottom: 5px !important;
-        display: block;
-        text-align: center;
-        background: rgba(0,0,0,0.45);
-        border-radius: 10px;
-    }
-
-    /* Search + dropdown */
-    #search,
-    .dropdown {
+    .outfit-menu {
+        position: static !important;
         width: 90% !important;
-        margin: 10px auto !important;
-        font-size: 1rem !important;
+        margin: 15px auto !important;
+        height: auto !important;
+        padding: 15px !important;
+        border-radius: 12px !important;
+        text-align: center;
+    }
+
+    .menu-title {
+        font-size: 1.4rem !important;
+    }
+
+    .menu-links {
+        opacity: 1 !important;
+        margin-top: 10px !important;
+    }
+
+    .menu-links a {
+        font-size: 1.1rem !important;
         padding: 10px !important;
+        margin: 5px 0 !important;
         display: block;
     }
 
-    /* Responsive grid */
-    .grid {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        justify-items: center;
-        margin-top: 10px;
-    }
-
-    .grid a,
-    .card,
-    .card1, .card2, .card3, .card4, .card5, .card6,
-    .card7, .card8, .card9, .card10, .card11, .card12,
-    .card13, .card14, .card15, .card16, .card17, .card18 {
-        width: 150px !important;
-        height: 190px !important;
-    }
-
-    .image-container {
-        width: 150px !important;
-        height: 190px !important;
-    }
-
-    .image-container img {
-        object-fit: contain;
-        border-radius: 10px;
-    }
-
-    /* Purchase + Total boxes */
-    .purchase-box {
-        margin-top: 20px !important;
-        padding: 12px !important;
-        font-size: 1.2rem !important;
-        background: rgba(0,0,0,0.75);
-        color: white;
-        border-radius: 12px;
+    .center-welcome {
+        position: static !important;
+        width: 90% !important;
+        margin: 20px auto !important;
+        padding: 20px !important;
         text-align: center;
+        border-radius: 15px !important;
     }
 
-    .total-price-box {
-        margin-top: 10px !important;
-        padding: 12px !important;
+    .center-welcome h1 {
+        font-size: 1.8rem !important;
+    }
+
+    .center-welcome p {
         font-size: 1.1rem !important;
-        background: rgba(0,0,0,0.85);
-        color: white;
-        border-radius: 12px;
-        text-align: center;
-        margin-bottom: 30px;
+    }
+
+    .snow span {
+        width: 5px !important;
+        height: 5px !important;
+        opacity: 0.6 !important;
+    }
+
+    body.main-page {
+        display: block !important;
+        padding: 0;
+        margin: 0;
     }
 }
+
 
 
 
