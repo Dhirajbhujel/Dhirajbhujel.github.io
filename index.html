@@ -111,6 +111,15 @@
 
     localStorage.removeItem("selectedItems");
 </script>
+<script>
+    const menu = document.querySelector(".outfit-menu");
+    const links = document.querySelector(".menu-links");
+
+    menu.addEventListener("click", () => {
+        links.classList.toggle("open");
+    });
+</script>
+
 
 </body>
 </html>
